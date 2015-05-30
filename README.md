@@ -9,11 +9,11 @@ any way.
 
 # Installation
 
-You will need to set up and configure the ![Go](https://golang.org/doc/install) 
+You will need to set up and configure the [Go](https://golang.org/doc/install) 
 tool chain.
 
-> go get github.com/umahmood/pushover
-> cd $GOPATH/src/github.com/umahmood/pushover
+> go get github.com/umahmood/pushover <br>
+> cd $GOPATH/src/github.com/umahmood/pushover <br>
 > go install
 
 The binary should now be located in: $GOTPATH/bin.
@@ -59,11 +59,11 @@ Replace YYY and XXX with your token and user keys respectively.
 
 # Usage
 
-> pushover -msg "hello world"
+> $ pushover -msg "hello world"
 
-> pushover -title "Hi" -msg "Hello World" -device "nexus5" -priority 2 -timestamp 1433024710 -url "http://www.google.com" -url-title "Google"
+> $ pushover -title "Hi" -msg "Hello World" -device "nexus5" -priority 2 -timestamp 1433024710 -url "http://www.google.com" -url-title "Google"
 
-> pushver -h <br>
+> $ pushover -h <br>
 Usage of pushover:<br>
   -device="": Send message directly to this device, rather than all devices.<br>
   -msg="": (Required) - Your message.<br>
