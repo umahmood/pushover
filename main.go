@@ -202,8 +202,8 @@ func main() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-		fmt.Println("Success")
 		if verbose {
+			fmt.Println("Success")
 			fmt.Println("Request id:", j["request"])
 			fmt.Println("Message limit:", rsp.Header["X-Limit-App-Limit"][0])
 			fmt.Println("Remaining Messages:", rsp.Header["X-Limit-App-Remaining"][0])
