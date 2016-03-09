@@ -23,10 +23,10 @@ var (
 	sound     string
 	timestamp string
 	title     string
-	token_key string
-	url_path  string
-	url_title string
-	user_key  string
+	tokenKey  string
+	urlPath   string
+	urlTitle  string
+	userKey   string
 )
 
 var verbose bool
@@ -62,10 +62,10 @@ func init() {
 	flag.StringVar(&title, "title", "", "Your message's title, otherwise "+
 		"your app's name is used.")
 
-	flag.StringVar(&url_path, "url", "", "A supplementary URL to show with "+
+	flag.StringVar(&urlPath, "url", "", "A supplementary URL to show with "+
 		"your message.")
 
-	flag.StringVar(&url_title, "url-title", "", "A title for your "+
+	flag.StringVar(&urlTitle, "url-title", "", "A title for your "+
 		"supplementary URL, otherwise just the URL is shown.")
 
 	flag.Parse()
@@ -101,13 +101,13 @@ func init() {
 	for l, err := r.ReadString('\n'); err == nil; l, err = r.ReadString('\n') {
 		t := strings.Split(l, "=")
 		if t[0] == "token" {
-			token_key = strings.TrimSpace(t[1])
+			tokenKey = strings.TrimSpace(t[1])
 		} else if t[0] == "user" {
-			user_key = strings.TrimSpace(t[1])
+			userKey = strings.TrimSpace(t[1])
 		}
 	}
 
-	if token_key == "" || user_key == "" {
+	if tokenKey == "" || userKey == "" {
 		fmt.Println("Error processing 'token'/'user' from .pushover file.")
 		os.Exit(1)
 	}
@@ -130,8 +130,8 @@ func extractJSON(jsonBlob []byte) (map[string]interface{}, error) {
 func main() {
 	// request payload.
 	v := url.Values{}
-	v.Set("token", token_key)
-	v.Set("user", user_key)
+	v.Set("token", tokenKey)
+	v.Set("user", userKey)
 	v.Set("message", message)
 
 	if device != "" {
@@ -159,12 +159,12 @@ func main() {
 		v.Set("title", title)
 	}
 
-	if url_path != "" {
-		v.Set("url", url_path)
+	if urlPath != "" {
+		v.Set("url", urlPath)
 	}
 
-	if url_title != "" {
-		v.Set("url_title", url_title)
+	if urlTitle != "" {
+		v.Set("urlTitle", urlTitle)
 	}
 
 	p := v.Encode()
