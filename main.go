@@ -30,9 +30,19 @@ var (
 )
 
 var verbose bool
+var version bool
+
+// Semantic versioning - http://semver.org/
+const (
+	Major = 1
+	Minor = 0
+	Patch = 0
+)
 
 // init process command line flags and read in user created api keys file.
 func init() {
+	flag.BoolVar(&version, "version", false, "Display program version.")
+
 	flag.BoolVar(&verbose, "v", false, "Display message response details.")
 
 	flag.StringVar(&device, "device", "", "Send message directly to this "+
@@ -59,6 +69,11 @@ func init() {
 		"supplementary URL, otherwise just the URL is shown.")
 
 	flag.Parse()
+
+	if version {
+		fmt.Println("Pushover", fmt.Sprintf("%d.%d.%d", Major, Minor, Patch))
+		os.Exit(0)
+	}
 
 	if message == "" {
 		fmt.Println("-msg is a required flag. You must specify a message, " +
